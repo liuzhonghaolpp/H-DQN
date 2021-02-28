@@ -12,17 +12,21 @@ config.read('./paramaters.ini')
 
 # 参数
 MAX_AoI = 100
-DURATION = config.get('simulation parameters', 'duration')
+DURATION = int(config.get('simulation parameters', 'duration'))
+IoT_COMMUNICATION_RANGE = int(config.get('simulation parameters', 'iot_communication_range'))
+BS_COMMUNICATION_RAGE = int(config.get('simulation parameters', 'BS_communication_rage'))
 
 
 class MyEnv(core.Env):
     def __init__(self):
         self.action_space = spaces.Box(low=-1, high=1, shape=(2,))
-        self.observation_space = None
+        self.observation_space = spaces.Box(shape=(14, ))
         self.num_sensors = 6
         self.sensors = []
         self.side_length = 1000  # 目标区域的边长
         self.time = 0
+        self.get_reward = False
+        self.reward = 0
         self.viewer = None
         for i in range(self.num_sensors):
             sensor = entity.Sensor(i)
@@ -47,16 +51,24 @@ class MyEnv(core.Env):
         self.BS.pos = np.array([500, 500])
         self.BS.aoi = np.array([MAX_AoI, MAX_AoI, MAX_AoI, MAX_AoI, MAX_AoI, MAX_AoI])
 
+        # 初始化响应参数
         self.time = 0
+        self.get_reward = False
+        self.reward = 0
         obs = self._get_observation()
         return obs
 
     def step(self, action):
+        self.time += 1
+        self.get_reward = False
+        self.reward = 0
         self.uav.action = action
         # 更新UAV的位置
         uav_mobility.get_next_pos(self.uav)
         # 查看UAV是否在sensor的通信范围内，且未采集该设备数据，然后更新uav_aoi
+        self._update_uav_aoi()
         # 查看UAV是否在BS通信范围内，且携带有未上传的数据，然后更新bs_aoi
+        self._update_bs_aoi()
         done = self._get_done()
         reward = self._get_reward()
         obs = self._get_observation()
@@ -99,11 +111,36 @@ class MyEnv(core.Env):
         return obs
 
     def _get_done(self):
-        return None
+        done = False
+        if self.uav.pos[0] < 0 or self.uav.pos[0] > 1000 or self.uav.pos[1] < 0 or self.uav.pos[1] > 1:
+            done = True
+        return done
 
     def _get_reward(self):
-        return None
+        if self.get_reward:
+            return self.reward
+        else:
+            return 0
 
+    def _update_uav_aoi(self):
+        for i, sensor in enumerate(self.sensors):
+            distance = np.sqrt(np.sum((sensor.pos - self.uav.pos)**2))
+            if distance <= IoT_COMMUNICATION_RANGE:
+                self.uav.aoi[i] = 1
+            else:
+                self.uav.aoi[i] += 1
+
+    def _update_bs_aoi(self):
+        distance = np.sqrt(np.sum((self.uav.pos - self.BS.pos)**2))
+        if distance <= BS_COMMUNICATION_RAGE:
+            self.get_reward = True
+            for i in range(len(self.BS.aoi)):
+                if self.BS.aoi[i] > self.uav.aoi[i]:
+                    self.reward += self.BS.aoi[i] - self.uav.aoi[i]
+                self.BS.aoi[i] = min(self.BS.aoi[i], self.uav.aoi[i])
+        else:
+            for i in range(len(self.BS.aoi)):
+                self.BS.aoi[i] += 1
 
 if __name__ == '__main__':
     env = MyEnv()
@@ -112,6 +149,13 @@ if __name__ == '__main__':
 
     while True:
         action = env.action_space.sample()
-        obs, _, _, _ = env.step(action)
+        obs, reward, done, _ = env.step(action)
+        print(obs)
+        print(reward)
+        print('---------------')
         env.render()
-        time.sleep(2)
+        time.sleep(4)
+
+
+# 可以在未全部采集完时完成交付，也可以在全部采集完成后只进行一次交付。
+# 动态环境，QoS函数的参数是动态变化的，即用户对应用的延时要求是动态变化的。

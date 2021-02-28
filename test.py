@@ -1,12 +1,18 @@
 import numpy as np
+import torch
 
 class class_a:
     def __init__(self):
         self.a = np.array([1,1])
 
-class_a = class_a()
-b = class_a.a
-print(class_a.a)
-b[1]=0
-print(b)
-print(class_a.a)
+def test_1():
+    a = torch.nn.functional.one_hot(torch.LongTensor([1,2]), num_classes=7)
+    print(a)
+
+def test_2():
+    e_decay = 0.05
+    get_epsilon = lambda episode: np.exp(-episode * e_decay)
+
+    print(get_epsilon(1))
+
+test_2()

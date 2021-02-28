@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="adcede21-a43e-401f-92f3-67c652235c40" name="Default Changelist" comment="" />
+    <list default="true" id="adcede21-a43e-401f-92f3-67c652235c40" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/optimizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/policies/ddpg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/policies/dqn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/policies/random.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/goal.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/storage_ddpg.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/storage_dqn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/env.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/paramaters.ini" beforeDir="false" afterPath="$PROJECT_DIR$/paramaters.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,10 +28,16 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1o5ZkSMbpRlQVyVwGGvwLgepeiq" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Multi-UAV MEC Simulation version0.2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,7 +57,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.env">
+  <component name="RunManager" selected="Python.test">
     <configuration name="env" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="H-DQN" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -107,9 +126,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.test" />
         <item itemvalue="Python.env" />
         <item itemvalue="Python.uav_mobility" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -123,16 +142,32 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1612578554666</updated>
-      <workItem from="1612578556118" duration="28352000" />
+      <workItem from="1612578556118" duration="28844000" />
+      <workItem from="1613371980999" duration="12982000" />
+      <workItem from="1613894571136" duration="13555000" />
+      <workItem from="1614308333247" duration="28129000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/H_DQN$env.coverage" NAME="env Coverage Results" MODIFIED="1612679029963" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/H_DQN$test.coverage" NAME="test Coverage Results" MODIFIED="1612666317947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/H_DQN$env.coverage" NAME="env Coverage Results" MODIFIED="1613638033036" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/H_DQN$test.coverage" NAME="test Coverage Results" MODIFIED="1614393041710" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/H_DQN$uav_mobility.coverage" NAME="uav_mobility Coverage Results" MODIFIED="1612678724069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
 </project>
